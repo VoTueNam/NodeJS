@@ -1,0 +1,46 @@
+Cài đặt express
+--> npm install express
+trang chủ: https://expressjs.com
+
+Cài đặt Nodemon --> lắng nghe sự thay đổi trong source code
+https://www.npmjs.com/package/nodemon
+
+npm install -g nodemon --> Cài vào máy vĩnh viễn luon
+
+npm install nodemon --save-dev --> cài vào dev environment
+
+Chỉnh sửa script trong package.json thì có thể chạy nodemon trong npm cmd (nodemon --inspect index.js)
+- Flag:  --inspect có thể debug trên browser --> click vào dòng nào thì đặt check point vào dòng đó dùng để debug
+
+install morgan: npm i morgan --> cấu hình vào file index.js - app.use(morgan('combined'))
+
+Add source lên github --> tạo file .gitignore
+git init
+git add .  (add tất cả vào, add file nào thì để tên file đó)
+git commit -m "Chèn message vào đây"
+git remote add origin https://github.com/VoTueNam/NodeJS.git (sửa đường dẫn thành github của bạn)
+git push -u origin main
+git push --set-upstream origin master or (main)
+
+Cài handlebars --> npm install express-handlebars
+const hbs = require('express-handlebars')
+
+app.engine('handlebars', hbs.engine());
+app.set('view engine', 'handlebars');
+
+Cách public folder img để xem đc hình ảnh trên server
+app.use(express.static(path.join(__dirname, 'public')))
+
+Cài Scss node --> npm install node-sass --save-dev
+Custom script --> watch = "node-sass --watch src/resources/scss/app.scss src/public/css/app.css"
+Flag watch là nó đang lắng nghe
+
+--> Đặt biến trong file _variables.scss --> thì app.scss sẽ nhận những cái giá trị lưu trong biến đó
+để app.scss nó hiểu đc cần : @import "variables"; ở đầu file
+
+Thêm file nodemon.json ở ngoài thư mục gốc --> add các tên extension để nó lắng nghe
+ví dụ: 
+{
+    "ext": "js json scss hbs"
+}
+--> cách nhau bởi dấu cách, nodemon sẽ lắng nghe sự thay đổi trg những file có đuôi này
