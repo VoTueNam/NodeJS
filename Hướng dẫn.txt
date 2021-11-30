@@ -44,4 +44,6 @@ ví dụ:
     "ext": "js json scss hbs"
 }
 --> cách nhau bởi dấu cách, nodemon sẽ lắng nghe sự thay đổi trg những file có đuôi này
-aa
+
+
+Boostrap 4: https://getbootstrap.com/docs/4.0/getting-started/introduction/
