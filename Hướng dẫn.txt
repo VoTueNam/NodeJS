@@ -48,3 +48,11 @@ ví dụ:
 
 Boostrap 4: https://getbootstrap.com/docs/4.0/getting-started/introduction/
 copy css và js link vào trg main html của handlebars
+
+basic route - xem code thôi
+
+Server mặc định khi request thì sẽ trả về GET method, trừ khi đc chỉ định
+
+Query parameter: trên URL sẽ có các parameter thì queue nó sẽ có dạng
+Bắt đầu bằng ?parem=value và có thể kết nối nhiều biến với nhau bằng &&
+

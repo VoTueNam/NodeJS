@@ -25,6 +25,24 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
+// Route - GET - News page
+app.get('/news', (req, res) => {
+  res.render('news')
+})
+
+// Route - GET - News page
+app.get('/search', (req, res) => {
+  //console.log(req.query)
+  // dòng này để bắn ra mấy cái queue param nhận đc thông qua GET method
+  // . thêm một lần nữa (.param ấy) để lấy đc value của thằng param này
+  res.render('search')
+})
+
+//custom 404 Page
+app.use(function (req, res, next) {
+  res.status(404).render('404', { layout: 'nothing.hbs' })
+  //chỗ này là dùng cái custom layout ko dùng layout chính của handlebars nữa
+})
 
 // log in console
 app.listen(port, () => {
