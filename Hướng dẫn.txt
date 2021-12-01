@@ -47,3 +47,4 @@ ví dụ:
 
 
 Boostrap 4: https://getbootstrap.com/docs/4.0/getting-started/introduction/
+copy css và js link vào trg main html của handlebars
