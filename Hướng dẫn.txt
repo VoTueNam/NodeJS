@@ -56,3 +56,17 @@ Server mặc định khi request thì sẽ trả về GET method, trừ khi đc 
 Query parameter: trên URL sẽ có các parameter thì queue nó sẽ có dạng
 Bắt đầu bằng ?parem=value và có thể kết nối nhiều biến với nhau bằng &&
 
+Form behavior - lấy name của 1 cái input ở trong form, đính nó trên URL thành queue parameter
+Với nội dung của queue parameter là value của nội dung đc nhập vào thẻ input
+--> Ngoài ra có thể chỉ định method cho form (thành POST chẳng hạn) mặc định method là GET
+--> Ngoài ra còn chỉnh sửa action trong form để nó chỉ định URL sau khi submit - mặc định khi ko nhập thì nó sẽ trả về đúng page hiện thời
+
+Form Post thì Express nó sẽ nhận giá trị thông qua biến body:
+req.body (get thì dùng req.query) Do express từ v4.6 trở đi có tích hợp body-parser nên có thể xài đc luôn
+Lưu ý: cần gọi midlleware để nhận giá trị thành công (xem code) - Xem file index.js
+
+Triển khai mô hình MVC vào code
+- Tạo 2 thư mục routes và app\controller
+- Trong routes thì triển khai route - kèm GET POST gì gì đó - và ngoài ra còn 1 thằng index.js trong route để quảng lý chung
+- Trong controller thì triển khai class để tạo các function cho routes gọi 
+
