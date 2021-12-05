@@ -70,3 +70,11 @@ Triển khai mô hình MVC vào code
 - Trong routes thì triển khai route - kèm GET POST gì gì đó - và ngoài ra còn 1 thằng index.js trong route để quảng lý chung
 - Trong controller thì triển khai class để tạo các function cho routes gọi 
 
+Chuẩn hóa code bằng thư viện
+- prettier: format code để đẹp hơn - sửa code lại đẹp hơn trước khi upload lên git
+- Vào sửa script trong package.json để chạy auto prettier
+- Cấu hình lint-staged để nó tự động sửa code prettier khi có code đc add vào git
+- Có 1 thằng husky trong package.json, chỗ pre-commit có nghĩa là khi commit code nó sẽ tự động làm đẹp (bằng lệnh lint-staged)
+
+Sử dụng mongoDB
+- 

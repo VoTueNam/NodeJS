@@ -1,15 +1,14 @@
 //Contructor
 //Những hàm ở đây trg Class này sẽ đc gọi ở route/
-class NewsController{
-    
+class NewsController {
     // GET / news
-    index(req,res) {
+    index(req, res) {
         res.render('news');
     }
 
     // GET /news/:slug
     show(req, res) {
-        res.send('News detail')
+        res.send('News detail');
     }
 
     //Route - POST - News page
@@ -20,4 +19,4 @@ class NewsController{
 }
 
 //Xuất class
-module.exports = new NewsController;
+module.exports = new NewsController();
