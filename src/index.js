@@ -6,6 +6,12 @@ const app = express();
 const port = 3000;
 
 const route = require('./routes');
+//import db từ trg folder config
+const db = require('./config/db');
+
+//connect db
+db.connect();
+
 
 //toàn bộ tài nguyên trong public đều được share hết để bên ngoài có thể truy cập
 app.use(express.static(path.join(__dirname, 'public')));

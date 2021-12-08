@@ -77,4 +77,10 @@ Chuẩn hóa code bằng thư viện
 - Có 1 thằng husky trong package.json, chỗ pre-commit có nghĩa là khi commit code nó sẽ tự động làm đẹp (bằng lệnh lint-staged)
 
 Sử dụng mongoDB
-- 
+- Xây dựng model trong MVC
+- Cài mongoose - Object model driver: nó là một cái công cụ mô hình hóa cho thằng mongoDB
+- mongoose nó sp có promises lẫn callbacks
+- Thôi xem code đi :) để connect
+- Tạo folder model rồi tạo course để quản lý model
+- Để đọc được collection cần có model, model nào cũng đọc đc bất kỳ collection nào trong file
+- Model ghi thì sẽ ghi vào collection đc chỉ định, nếu chưa có thì tạo mới luôn

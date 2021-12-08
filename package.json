@@ -8,11 +8,11 @@
     "watch": "node-sass --watch src/resources/scss/ -o src/public/css/",
     "test": "test"
   },
-  "lint-staged":{
+  "lint-staged": {
     "src/**/*.{js,json,scss}": "prettier --single-quote --tab-width 4 --write "
   },
-  "husky":{
-    "pre-commit":"lint-staged"
+  "husky": {
+    "pre-commit": "lint-staged"
   },
   "repository": {
     "type": "git",
@@ -28,8 +28,10 @@
   },
   "homepage": "https://github.com/VoTueNam/NodeJS#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.1",
     "express-handlebars": "^6.0.2",
+    "mongoose": "^6.0.14",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
