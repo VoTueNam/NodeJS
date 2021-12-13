@@ -23,14 +23,7 @@ class SiteController {
 
     // GET /search
     search(req, res) {
-        User.find({}, function (err, cc) {
-            if (!err) {
-                res.json(cc);
-            } else {
-                res.status(400), json({ error: 'ERROR!!!' });
-            }
-        });
-        // res.render('search');
+        res.render('search');
     }
 
     // GET 404
