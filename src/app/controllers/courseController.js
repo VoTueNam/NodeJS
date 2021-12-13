@@ -23,8 +23,10 @@ class SiteController {
     //POST Store - chỗ này là thêm dữ liệu vào DB
     store(req, res, next) {
 
+        const formData = req.body;//Nhận dữ liệu từ request post lưu vào biến
+        
         //chạy 2 thằng này là dữ liệu từ Post sẽ đc lưu vào DB
-        const cou = new Course(req.body);
+        const cou = new Course(formData);
         cou.save();
         res.render('courses/store');
     }

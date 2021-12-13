@@ -1,13 +1,21 @@
 const mongoose = require('mongoose');
+const slug = require('mongoose-slug-generator')
+
+mongoose.plugin(slug);
+
 const Schema = mongoose.Schema;
 
 // Tạo 1 model mới - có temple
+//Create Time và update Time nó tự tạo - thêm đối số thứ 2
 const Course = new Schema({
     name: {type: String, maxlength: 255 },
     description: {type: String, maxlength: 600},
     img: { type: String },
-    flag: {type: String, maxlength: 255},
-    createDate: {type: Date, default: Date.now},
+    level: { type: String },
+    //Slug tự động thêm
+    flag: {type: String, slug: 'name', unique: true},
+}, {
+    timestamps: true,
 })//trong model này có nhiều loại ràng buộc có thể set thêm
 
 //export model ra - nếu trg DB chưa có thì khi gọi Model này thì cũng sẽ tạo thêm dựa trên temple của model đó
