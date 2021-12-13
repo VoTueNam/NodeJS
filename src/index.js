@@ -36,7 +36,7 @@ app.engine(
 );
 app.set('view engine', 'hbs');
 //dùng để custom đường dẫn của handlebars theo ý mình
-app.set('views', path.join(__dirname, 'resources/views'));
+app.set('views', path.join(__dirname, 'resources','views'));
 
 // Route init - khởi tạo tuyến đường
 route(app);

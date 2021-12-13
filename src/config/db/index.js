@@ -3,9 +3,10 @@
 const mongoose = require('mongoose');
 
 async function connect() {
-    
+
     try {
-        await mongoose.connect('mongodb+srv://namdone:ANhQ9mhwjv7bUEG@cluster0.b8gjm.mongodb.net/3Block?authSource=admin&replicaSet=atlas-fawitb-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true', {
+        //await mongoose.connect('mongodb+srv://namdone:ANhQ9mhwjv7bUEG@cluster0.b8gjm.mongodb.net/3Block?authSource=admin&replicaSet=atlas-fawitb-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true', {
+        await mongoose.connect('mongodb://127.0.0.1:27017/3Block', {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
