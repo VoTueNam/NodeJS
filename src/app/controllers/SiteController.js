@@ -22,7 +22,7 @@ class SiteController {
         Course.find({}).lean()//thêm chấm lean() vào để fix lỗi handlebar
             //truyền dữ liệu từ DB vào hbs - truyền vào đối số thứ 2
             .then(cc => res.render('home', {
-                ccc:cc
+                courses:cc
             }))
             .catch(next);
 

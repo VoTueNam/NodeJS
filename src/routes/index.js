@@ -1,9 +1,13 @@
 const newRouter = require('./news');
 const siteRouter = require('./site');
+const courseRouter = require('./courses')
 
 function route(app) {
     //Có nhiều trang thì sẽ tạo controller riêng
     app.use('/news', newRouter);
+
+    //Course site
+    app.use('/courses', courseRouter);
 
     // Trang Home, Search và 404
     app.use('/', siteRouter);

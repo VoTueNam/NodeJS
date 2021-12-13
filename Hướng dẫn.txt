@@ -84,3 +84,8 @@ Sử dụng mongoDB
 - Tạo folder model rồi tạo course để quản lý model
 - Để đọc được collection cần có model, model nào cũng đọc đc bất kỳ collection nào trong file
 - Model ghi thì sẽ ghi vào collection đc chỉ định, nếu chưa có thì tạo mới luôn
+
+Read database: Xem SiteController và Home handlebars
+Set up chuyển hướng trong html -> Sau đó viết route và controller
+
+

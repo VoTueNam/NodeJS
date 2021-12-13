@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const Course = new Schema({
     name: {type: String, maxlength: 255 },
     description: {type: String, maxlength: 600},
-    image: {type: String, maxlength: 255},
+    img: { type: String },
+    flag: {type: String, maxlength: 255},
     createDate: {type: Date, default: Date.now},
 })//trong model này có nhiều loại ràng buộc có thể set thêm
 
