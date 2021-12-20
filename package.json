@@ -33,7 +33,8 @@
     "express-handlebars": "^6.0.2",
     "mongoose": "^6.0.14",
     "mongoose-slug-generator": "^1.0.4",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "node-virustotal": "^3.35.0"
   },
   "devDependencies": {
     "husky": "^7.0.4",
