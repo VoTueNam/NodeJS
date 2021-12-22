@@ -47,43 +47,100 @@ class SiteController {
 
     //POST - result
     result(req, res, next) {
-        
+
 
         var url = req.body.q
-        var result
+        var results
         var match
         if (match = url.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n\?\=]+)/im)) {
-            result = match[1]
-            if (match = result.match(/^[^\.]+\.(.+\..+)$/)) {
-                result = match[1]
-            }
+            results = match[1]
+            // if (match = result.match(/^[^\.]+\.(.+\..+)$/)) {
+            //     result = match[1]
+            // }
         }
-        result = 'http://' + result+'/';
-        console.log(result);
+        results = 'http://' + results + '/';
+        console.log(results);
 
         var jsonObj
 
         //check URL - virus total
-        const hashed = nvt.sha256(result);
+        const hashed = nvt.sha256(results);
         const theSameKey = defaultTimedInstance.setKey('3603b9eebdd57284643ace954577ff8d2d6415c027d20c867a22d8c7597e5431');
 
         //print result from API
-        const theSameObject = defaultTimedInstance.urlLookup(hashed, function(err, resp){
+        const theSameObject = defaultTimedInstance.urlLookup(hashed, function (err, resp) {
             if (err) {
-              console.log('Well, crap.');
+                console.log('Well, crap.');
                 console.log(err);
                 //res.send(err)
-              return;
+                return;
             }
-            res.json(resp.data)
-            console.log(resp);
+            //console.log(resp);
             jsonObj = JSON.parse(resp)
             console.log('type of: ' + typeof jsonObj);
-            return;
-        });
-        //console.log('type of: '+typeof resp);
-        
 
+            var temp = jsonObj;
+            temp = temp.data.attributes.last_analysis_results;
+
+
+            //Get all engine name
+            var engine = [];
+            for (var k in temp) engine.push(k);
+            console.log(engine)
+
+            //Get all type
+            const type = new Map();
+            for (var k in engine) {
+                type.set(temp[engine[k]].result, 1);
+
+            }
+            console.log(type)
+
+            //Convert Map to Array
+            let array = Array.from(type, ([name, value]) => ({ name, value }));
+
+
+            //Get result for each engine
+            const value = new Map();
+            //var clean = malware = unrated = malicious = 1;
+            for (var index in engine) {
+                //Get number of type
+                for (let count = 0; count < array.length; count++) {
+                    //push type name and quantity of that type
+                    if (temp[engine[index]].result == array[count].name) {
+                        value.set(array[count].name, array[count].value++)
+                    }
+                }
+            }
+
+            var ketqua = '';
+
+            let newArray = []
+
+            for (let count = 0; count < array.length; count++) {
+                
+                newArray[array[count].name] = (Number(value.get(array[count].name)) / engine.length * 100).toFixed(2)
+                
+                console.log(array[count].name + " = " + (Number(value.get(array[count].name)) / engine.length * 100).toFixed(2) + "%")
+                
+                ketqua += array[count].name + " = " + (Number(value.get(array[count].name)) / engine.length * 100).toFixed(2) + "%"
+            }
+
+            console.log(newArray)
+
+            // //return;
+
+            res.send(ketqua);
+        });
+    }
+
+    test(req, res, next) {
+
+        //[ clean: '87.10', unrated: '11.83', phishing: '1.08' ]
+        let newArray = [ ['clean', '87.10'], ['unrated', '11.83'], ['phishing', '1.08'] ]
+        res.render('result', {
+            array: newArray
+        })
     }
 }
 
