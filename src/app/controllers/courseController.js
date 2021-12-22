@@ -9,7 +9,7 @@ class SiteController {
         Course.findOne({ flag: req.params.slug }).lean()
             .then(cc => {
                 res.render('courses/show', {
-                    course:cc
+                    course: cc
                 });
             })
             .catch(next);
@@ -29,6 +29,22 @@ class SiteController {
         const cou = new Course(formData);
         cou.save();
         res.render('courses/store');
+    }
+
+    //Get Edit - /courses/:id/edit
+    edit(req, res, next) {
+        Course.findById(req.params.id).lean()
+            .then(cc => res.render('courses/edit', {
+                course:cc
+            }))
+            .catch(next)
+    }
+
+    //Put update - /course/:id
+    update(req, res, next) {
+        Course.updateOne({ _id: req.params.id }, req.body)
+        .then(()=> res.redirect('/me/stored/courses'))
+        .catch(next)
     }
 
     // GET 404

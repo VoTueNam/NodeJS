@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
+const methodOverride = require('method-override');
 const hbs = require('express-handlebars');
 const app = express();
 const port = 3000;
@@ -24,6 +25,10 @@ app.use(
 );
 app.use(express.json());
 
+
+//Method overRide
+app.use(methodOverride('_method'))
+
 //Morgan dùng để xem log từ client về phía server
 //app.use(morgan('combined'))
 
@@ -32,6 +37,10 @@ app.engine(
     'hbs',
     hbs.engine({
         extname: '.hbs', //custom name extension của temple
+        //tạo helper để có thể gọi trong html hbs và sử dụng
+        helpers: {
+            sum: (a, b) => a + b,
+        }
     })
 );
 app.set('view engine', 'hbs');

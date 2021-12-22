@@ -1,0 +1,30 @@
+<div class="mt-4">
+    <h3>My course</h3>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name course</th>
+                <th scope="col">Level</th>
+                <th scope="col">Create time</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each course}}
+            <tr>
+                {{!-- Xem file index o ngoai de xem lai ham sum --}}
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.level}}</td>
+                <td>{{this.flag}}</td>
+                <td>
+                    <a href="/courses/{{this._id}}/edit" class="btn btn-dark">Update</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>

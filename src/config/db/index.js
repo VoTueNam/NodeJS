@@ -8,7 +8,7 @@ async function connect() {
         //await mongoose.connect('mongodb+srv://namdone:ANhQ9mhwjv7bUEG@cluster0.b8gjm.mongodb.net/3Block?authSource=admin&replicaSet=atlas-fawitb-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true', {
         await mongoose.connect('mongodb://127.0.0.1:27017/3Block', {
             useNewUrlParser: true,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
         });
         console.log('Connect successfully!!!');
     } catch (error) {
