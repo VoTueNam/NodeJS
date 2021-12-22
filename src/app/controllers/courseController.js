@@ -35,7 +35,7 @@ class SiteController {
     edit(req, res, next) {
         Course.findById(req.params.id).lean()
             .then(cc => res.render('courses/edit', {
-                course:cc
+                course: cc
             }))
             .catch(next)
     }
@@ -43,8 +43,15 @@ class SiteController {
     //Put update - /course/:id
     update(req, res, next) {
         Course.updateOne({ _id: req.params.id }, req.body)
-        .then(()=> res.redirect('/me/stored/courses'))
-        .catch(next)
+            .then(() => res.redirect('/me/stored/courses'))
+            .catch(next)
+    }
+
+    //Delete - Delete course/:id
+    delete(req, res, next) {
+        Course.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next)
     }
 
     // GET 404
