@@ -17,7 +17,7 @@
             <option value="delete">Delete</option>
         </select>
 
-        <button class="btn btn-primary btn-sn disabled btn-check-all">Excute!</button>
+        <button class="btn btn-primary btn-sn btn-check-all" disabled>Excute!</button>
     </div>
 
     <table class="table mt-4">
@@ -110,7 +110,10 @@
         var checkAllSubmitBtn = $('.btn-check-all')
 
         //form tổng
-        var containerForm = document.forms['container-form']
+        //cái này nhận biến = js thuần
+        //var containerForm = document.forms['container-form']
+        //cái này nhận = JQuery
+        var containerForm = $('form[name="container-form"]')
 
         $('#delete-Model').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
@@ -140,21 +143,21 @@
             renderCheckAllSubmitBtn()
         })
 
-        //Button submit checkALL clicked
-        checkAllSubmitBtn.on('submit',function(e){
-            var isSumbitAble = $(this).hasClass('disabled')
-            if(isSumbitAble){
+        //Button submit checkALL clicked - Sửa attribute disable rồi nên ko cần thằng này nữa
+        /*containerForm.on('submit', function (e) {
+            var isSumbitAble = checkAllSubmitBtn.hasClass('disabled')
+            if (isSumbitAble) {
                 e.preventDefault()
             }
-        })
+        })*/
 
         //Mở khóa button excute
         function renderCheckAllSubmitBtn() {
             var checkCount = $('input[name="courseIds[]"]:checked').length
             if (checkCount > 0) {
-                checkAllSubmitBtn.removeClass('disabled')
+                checkAllSubmitBtn.attr('disabled', false)
             } else {
-                checkAllSubmitBtn.addClass('disabled')
+                checkAllSubmitBtn.attr('disabled', true)
             }
         }
     })

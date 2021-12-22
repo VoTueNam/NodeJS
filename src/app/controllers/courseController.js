@@ -60,7 +60,7 @@ class SiteController {
             .catch(next)
     }
 
-    //Patch - restore course/:id/restore
+    //Patch - restore courses/:id/restore
     restore(req, res, next) {
         //function của mongoose-delete
         Course.restore({ _id: req.params.id })
@@ -68,7 +68,7 @@ class SiteController {
             .catch(next)
     }
 
-    //Post form Action /form-action
+    //Post form Action /courses/form-action
     formAction(req, res, next) {
         switch (req.body.action) {
             case 'delete':
