@@ -13,6 +13,18 @@ class meController {
             .catch(next);
     }
 
+    //Get - me/trash/courses
+    trash(req, res, next) {
+        //findDeleted này là func của mongoogse-delete
+        Course.findDeleted({}).lean()
+        .then(cc => {
+            res.render('me/trashCourse', {
+                course:cc
+            });
+        })
+        .catch(next);
+    }
+
 }
 
 //Xuất class

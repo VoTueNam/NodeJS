@@ -89,3 +89,11 @@ Read database: Xem SiteController và Home handlebars
 Set up chuyển hướng trong html -> Sau đó viết route và controller
 
 
+
+Soft Delete
+- Delete Soft
+- Restore
+- Force delete - xóa thiệt
+
+-> Thư viện mongoose-delete
+https://www.npmjs.com/package/mongoose-delete

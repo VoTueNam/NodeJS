@@ -22,13 +22,11 @@ class SiteController {
 
     //POST Store - chỗ này là thêm dữ liệu vào DB
     store(req, res, next) {
-
-        const formData = req.body;//Nhận dữ liệu từ request post lưu vào biến
         //res.send(req.body)
         //chạy 2 thằng này là dữ liệu từ Post sẽ đc lưu vào DB
-        const cou = new Course(formData);
+        const cou = new Course(req.body);
         cou.save();
-        res.render('courses/store');
+        res.redirect('/me/stored/courses');
     }
 
     //Get Edit - /courses/:id/edit
@@ -49,10 +47,28 @@ class SiteController {
 
     //Delete - Delete course/:id
     delete(req, res, next) {
+        //delete là function của mongoose-delete - áp dụng xóa mềm
+        Course.delete({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next)
+    }
+
+    //Delete thiệt - Delete course/:id/force
+    deleteForce(req, res, next) {
         Course.deleteOne({ _id: req.params.id })
             .then(() => res.redirect('back'))
             .catch(next)
     }
+
+    //Patch - restore course/:id/restore
+    restore(req, res, next) {
+        //function của mongoose-delete
+        Course.restore({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next)
+    }
+
+
 
     // GET 404
     error404(req, res, next) {

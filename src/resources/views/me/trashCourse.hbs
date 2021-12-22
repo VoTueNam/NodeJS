@@ -1,7 +1,7 @@
 <div class="mt-4">
     <div>
-        <h3>My course</h3>
-        <a href="/me/trash/courses">Thùng rác here</a>
+        <a href="/me/stored/courses">Back</a>
+        <h3>My TRASH course</h3>
     </div>
     
     <table class="table mt-4">
@@ -23,9 +23,9 @@
                 <td>{{this.level}}</td>
                 <td>{{this.flag}}</td>
                 <td>
-                    <a href="/courses/{{this._id}}/edit" class="btn btn-dark">Update</a>
+                    <a href="#" class="btn btn-dark btn-restore" data-id="{{this._id}}">Restore</a>
                     <a href="#" class="btn btn-danger" data-toggle="modal" data-id="{{this._id}}"
-                        data-target="#delete-Model">Delete</a>
+                        data-target="#delete-Model">Real Delete</a>
                 </td>
             </tr>
 
@@ -33,8 +33,7 @@
             {{else}}
             <tr>
                 <td colspan="5" class="text-center">
-                    <h3>Chưa có khóa học gì cả!</h3>
-                    <a href="/courses/create">Đăng khóa học ở đây</a>
+                    <h3>Empty Trash!</h3>
                 </td>
             </tr>
 
@@ -70,6 +69,8 @@
 {{!-- Form để xóa dữ liệu - Nó ẩn - action="/courses/{{course._id}}?_method=DELETE" --}}
 <form method="post" name="delete-course-form-hidden"></form>
 
+<form method="post" name="restore-course-form-hidden"></form>
+
 {{!-- Truyền dữ liệu để xóa --}}
 <script>
 
@@ -79,7 +80,9 @@
 
         var coursesID;
         var deleteForm = document.forms['delete-course-form-hidden']
+        var restoreForm = document.forms['restore-course-form-hidden']
         var btnDeleteCourse = document.getElementById('btn-delete-course')
+        var restoreBtn = $('.btn-restore') //này là lệnh JQuery lấy hết button restore
 
         $('#delete-Model').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
@@ -90,9 +93,19 @@
         //Khi xác nhận bấm nút xóa
         btnDeleteCourse.onclick = function () {
             //thêm action cho form
-            deleteForm.action = '/courses/' + coursesID + '?_method=DELETE'
+            deleteForm.action = '/courses/' + coursesID + '/force?_method=DELETE'
             //Submit nội dung form nè
             deleteForm.submit()
         }
+
+        //Restore nè
+        restoreBtn.click(function(event){
+            event.preventDefault()//Có củng đc ko có cũng chả sao
+            
+            //lấy đc ID từ form nhờ JQuery
+            var restoreID = $(this).data('id')
+            restoreForm.action = '/courses/' + restoreID + '/restore?_method=PATCH'
+            restoreForm.submit()
+        })
     })
 </script>
