@@ -1,9 +1,25 @@
-<div class="mt-4">
+<form name="container-form" class="mt-4" method="POST" action="/courses/form-action">
     <div>
         <h3>My course</h3>
         <a href="/me/trash/courses">Thùng rác here</a>
     </div>
-    
+
+
+    <div class="mt-4 d-flex align-item-center">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+            <label class="form-check-label" for="checkbox-all">
+                Check all
+            </label>
+        </div>
+        <select class="form-control-sm checkbox-select-all-options" name="action" required>
+            <option value="">---Your choose---</option>
+            <option value="delete">Delete</option>
+        </select>
+
+        <button class="btn btn-primary btn-sn disabled btn-check-all">Excute!</button>
+    </div>
+
     <table class="table mt-4">
         <thead>
             <tr>
@@ -12,11 +28,17 @@
                 <th scope="col">Level</th>
                 <th scope="col">Create time</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             {{#each course}}
             <tr>
+                <td>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="courseIds[]" value="{{this._id}}">
+                    </div>
+                </td>
                 {{!-- Xem file index o ngoai de xem lai ham sum --}}
                 <th scope="row">{{sum @index 1}}</th>
                 <td>{{this.name}}</td>
@@ -42,7 +64,7 @@
 
         </tbody>
     </table>
-</div>
+</form>
 
 
 {{!-- Confirm Delete --}}
@@ -57,7 +79,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Xóa là mất thiệt đó. Có chắc là muốn xóa chưa?
+                Xóa là vào thùng rác đó. Có chắc là muốn xóa chưa?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
@@ -81,6 +103,15 @@
         var deleteForm = document.forms['delete-course-form-hidden']
         var btnDeleteCourse = document.getElementById('btn-delete-course')
 
+        //checkbox
+        var checkboxAll = $('#checkbox-all')
+        var courseItemCheckbox = $('input[name="courseIds[]"]')
+
+        var checkAllSubmitBtn = $('.btn-check-all')
+
+        //form tổng
+        var containerForm = document.forms['container-form']
+
         $('#delete-Model').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
             //Nhận dữ liệu từ form
@@ -93,6 +124,38 @@
             deleteForm.action = '/courses/' + coursesID + '?_method=DELETE'
             //Submit nội dung form nè
             deleteForm.submit()
+        }
+
+        //checkbox check all click
+        checkboxAll.change(function () {
+            var isCheckedAll = $(this).prop('checked')
+            courseItemCheckbox.prop('checked', isCheckedAll)
+            renderCheckAllSubmitBtn()
+        })
+
+        //Check Item checkbox change
+        courseItemCheckbox.change(function () {
+            var isCheckedAll = courseItemCheckbox.length == $('input[name="courseIds[]"]:checked').length
+            checkboxAll.prop('checked', isCheckedAll)
+            renderCheckAllSubmitBtn()
+        })
+
+        //Button submit checkALL clicked
+        checkAllSubmitBtn.on('submit',function(e){
+            var isSumbitAble = $(this).hasClass('disabled')
+            if(isSumbitAble){
+                e.preventDefault()
+            }
+        })
+
+        //Mở khóa button excute
+        function renderCheckAllSubmitBtn() {
+            var checkCount = $('input[name="courseIds[]"]:checked').length
+            if (checkCount > 0) {
+                checkAllSubmitBtn.removeClass('disabled')
+            } else {
+                checkAllSubmitBtn.addClass('disabled')
+            }
         }
     })
 </script>

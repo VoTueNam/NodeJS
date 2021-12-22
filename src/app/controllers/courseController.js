@@ -68,7 +68,20 @@ class SiteController {
             .catch(next)
     }
 
-
+    //Post form Action /form-action
+    formAction(req, res, next) {
+        switch (req.body.action) {
+            case 'delete':
+                //xóa tất cả thằng nào có id trong list này
+                Course.delete({ _id: {$in: req.body.courseIds} })
+                    .then(() => res.redirect('back'))
+                    .catch(next)
+                break
+            default:
+                res.send('Erorrrrrrrrrr!')
+                break
+        }
+    }
 
     // GET 404
     error404(req, res, next) {
